@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <div class="illustration">
+    <img src="assets/images/undraw_bibliophile_re_xarc.svg" alt="Illustration">
+  </div>
+  <div class="login-form">
+    <h2>Sign In</h2>
+    <p>Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input id="username" formControlName="username" required>
+        <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)" class="error">
+          <span *ngIf="loginForm.get('username')?.hasError('required')">Username is required</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input id="password" formControlName="password" type="password" required>
+        <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="error">
+          <span *ngIf="loginForm.get('password')?.hasError('required')">Password is required</span>
+        </div>
+      </div>
+      <div class="options">
+      </div>
+      <button type="submit" class="login-button">Log In</button>
+    </form>
+    <div class="register-option mt-3 text-center">
+      <span>Don't have an account? <a routerLink="/register">Register here</a></span>
+    </div>
+  </div>
+</div>

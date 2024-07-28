@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-left">
+      <a routerLink="/home" class="navbar-brand">Page Picks</a>
+      <span class="navbar-subtitle">Your online library</span>
+    </div>
+    <ul class="navbar-right">
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/bookstore">Bookstore</a></li>
+      <li><a routerLink="/blog">Blog</a></li>
+      <li *ngIf="authService.isAuthenticated()"><a routerLink="/profile">My Account</a></li>
+      <li><a routerLink="/contact">Contact</a></li>
+      <li *ngIf="authService.isAuthenticated()"><a routerLink="#" class="cart">Cart (0)</a></li>
+      <li *ngIf="!authService.isAuthenticated()"><a routerLink="/login">Login</a></li>
+      <li *ngIf="!authService.isAuthenticated()"><a routerLink="/register">Register</a></li>
+      <li *ngIf="authService.isAuthenticated()"><a (click)="logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,51 @@
+<div class="container mt-5 ml-6">
+  <div class="illustration">
+    <img src="../../assets/images/undraw_bibliophile_re_xarc.svg" alt="Illustration">
+  </div>
+  <div class="register-form">
+    <h2>Register</h2>
+    <p>Create your account. It's free and only takes a minute.</p>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="input-group">
+        <label for="firstName">First Name</label>
+        <input id="firstName" formControlName="firstName" required>
+        <div *ngIf="registerForm.get('firstName')?.invalid && (registerForm.get('firstName')?.dirty || registerForm.get('firstName')?.touched)" class="error">
+          <span *ngIf="registerForm.get('firstName')?.hasError('required')">First name is required</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="lastName">Last Name</label>
+        <input id="lastName" formControlName="lastName" required>
+        <div *ngIf="registerForm.get('lastName')?.invalid && (registerForm.get('lastName')?.dirty || registerForm.get('lastName')?.touched)" class="error">
+          <span *ngIf="registerForm.get('lastName')?.hasError('required')">Last name is required</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input id="username" formControlName="username" required>
+        <div *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched)" class="error">
+          <span *ngIf="registerForm.get('username')?.hasError('required')">Username is required</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" type="email" required>
+        <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)" class="error">
+          <span *ngIf="registerForm.get('email')?.hasError('required')">Email is required</span>
+          <span *ngIf="registerForm.get('email')?.hasError('email')">Invalid email format</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input id="password" formControlName="password" type="password" required>
+        <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)" class="error">
+          <span *ngIf="registerForm.get('password')?.hasError('required')">Password is required</span>
+        </div>
+      </div>
+      <button type="submit" class="register-button">Register</button>
+      <div class="alternative-login mt-3 text-center">
+        <span>Already have an account? <a routerLink="/login">Login here</a></span>
+      </div>
+    </form>
+  </div>
+</div>
