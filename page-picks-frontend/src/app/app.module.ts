@@ -14,6 +14,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AllBooksComponent } from './all-books/all-books.component';
+import { AddBookDialogComponent } from './all-books/add-book-dialog/add-book-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -26,7 +30,9 @@ import { ProfileComponent } from './profile/profile.component';
     NavbarComponent,
     MainLayoutComponent,
     AuthLayoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    AllBooksComponent,
+    AddBookDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,9 @@ import { ProfileComponent } from './profile/profile.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatIconModule,
 
   ],
   providers: [],

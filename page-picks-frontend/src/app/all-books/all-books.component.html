@@ -1,0 +1,27 @@
+<div class="books-grid">
+  
+    <div class="book-card" *ngFor="let book of allBooks">
+
+      <div class="actions">
+        <button mat-icon-button class="edit-btn" (click)="editBook(book)">
+          <mat-icon>edit_outline</mat-icon>
+        </button>
+        <button mat-icon-button class="delete-btn"  (click)="deleteBook(book.isbn)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <div class="book-image">
+        <img [src]="book.imageUrl" alt="{{ book.title }} cover image">
+      </div>
+      <div class="book-info">
+        <h2 class="book-title">{{ book.title }}</h2>
+        <p class="book-author">{{ book.author }}</p>
+        <p class="book-genre">{{ book.genre }}</p>
+        <p class="book-description">{{ book.description }}</p>
+        <p class="book-publisher">{{ book.publisher }}</p>
+        <p class="book-pageCount" *ngIf="book.pageCount">{{ book.pageCount }} pages</p>
+      </div>
+    </div>
+  </div>
+  
