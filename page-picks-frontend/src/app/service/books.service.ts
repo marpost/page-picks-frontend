@@ -47,6 +47,31 @@ export class BooksService {
     return this.http.post<any>(`${this.baseUrl}/save`, body);
   }
 
+  
+  editBook(book: any, originalIsbn: string) {
+    const body = {
+      isbn: book.isbn,
+      title: book.title,
+      author: book.author,
+      genre: book.genre,
+      description: book.description,
+      imageUrl: book.imageUrl,
+      publisher: book.publisher,
+      pageCount: book.pageCount,
+      userStatuses: book.userStatuses 
+    };
+
+    return this.http.put<any>(`${this.baseUrl}/${originalIsbn}/edit`, body);
+  }
+
+  getBookByIsbn(isbn: string){
+    const body = {
+      isbn: isbn
+    };
+
+    return this.http.get<any>(`${this.baseUrl}/${isbn}`);
+  }
+
   deleteBook(isbn: string){
     return this.http.request('DELETE', `${this.baseUrl}/delete/${isbn}`);
   }

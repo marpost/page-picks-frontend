@@ -3,6 +3,7 @@ import { BooksService } from '../service/books.service';
 import { Book } from '../service/interface/book';
 import { AddBookDialogComponent } from './add-book-dialog/add-book-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-books',
@@ -14,7 +15,7 @@ export class AllBooksComponent implements OnInit {
   allBooks: Book[] = [];
   
 
-  constructor(private bookService: BooksService, public dialog: MatDialog) { }
+  constructor(private bookService: BooksService, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchData();
@@ -24,6 +25,7 @@ export class AllBooksComponent implements OnInit {
     this.bookService.getBooks().subscribe(
       (response: Book[]) => {
         this.allBooks = response; 
+        // this.allBooks = this.allBooks.slice(0,4);
         console.log('Books fetched successfully:', this.allBooks);
       },
       (error) => {
@@ -66,6 +68,12 @@ export class AllBooksComponent implements OnInit {
       );
     }
   }
+
+  viewBook(book: any) {
+    this.router.navigate(['/book'], { queryParams: { isbn: book.isbn } }); 
+  }
+  
+  
 }
 
 

@@ -7,6 +7,8 @@ import { ContactComponent } from './contact/contact.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import {ProfileComponent} from "./profile/profile.component";
+import { BookViewComponent } from './all-books/book-view/book-view.component';
+import { BookstoreComponent } from './bookstore/bookstore.component';
 
 const routes: Routes = [
   {
@@ -15,9 +17,10 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
+      { path: 'bookstore', component: BookstoreComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'profile', component: ProfileComponent },
-
+      { path: 'book', component: BookViewComponent },
     ]
   },
   {

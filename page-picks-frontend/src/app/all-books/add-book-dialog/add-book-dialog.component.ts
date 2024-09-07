@@ -21,12 +21,14 @@ export class AddBookDialogComponent {
   };
 
   mode = 'Add';
+  originalIsbn = '';
 
   constructor(public dialogRef: MatDialogRef<AddBookDialogComponent>, private bookService: BooksService, 
     @Inject(MAT_DIALOG_DATA) public bookData: Book
   ) {
     if(bookData){
       this.mode = 'Edit';
+      this.originalIsbn = bookData.isbn;
       this.book = this.bookService.copyBook(this.book, bookData);
       console.log('book deep',this.book)
     } 
@@ -38,15 +40,27 @@ export class AddBookDialogComponent {
       return;
     }
 
-    this.bookService.saveBook(this.book).subscribe((response) => {
-      console.log(response);
-      console.log('Book created successfully')
-      this.dialogRef.close(true);
-    },
-    (error) => {
-      console.log(error);
-      console.log('Error creating book')
-    });
+    if(this.mode === 'Add'){
+      this.bookService.saveBook(this.book).subscribe((response) => {
+        console.log(response);
+        console.log('Book created successfully')
+        this.dialogRef.close(true);
+      },
+      (error) => {
+        console.log(error);
+        console.log('Error creating book')
+      });
+    } else {
+      this.bookService.editBook(this.book, this.originalIsbn).subscribe((response) => {
+        console.log(response);
+        console.log('Book edited successfully')
+        this.dialogRef.close(true);
+      },
+      (error) => {
+        console.log(error);
+        console.log('Error editing book')
+      });
+    }
 
     this.dialogRef.close(this.book);
   }
@@ -62,8 +76,7 @@ export class AddBookDialogComponent {
            this.book.author.trim() !== '' &&
            this.book.genre.trim() !== '' &&
            this.book.description.trim() !== '' &&
-           this.book.imageUrl.trim() !== '' &&
-           this.book.publisher.trim() !== '' &&
+          //  this.book.publisher.trim() !== '' &&
            this.book.pageCount > 0
   }
 }

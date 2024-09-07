@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +18,9 @@ import { AllBooksComponent } from './all-books/all-books.component';
 import { AddBookDialogComponent } from './all-books/add-book-dialog/add-book-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
+import { AuthInterceptor } from './service/auth-interceptor';
+import { BookViewComponent } from './all-books/book-view/book-view.component';
+import { BookstoreComponent } from './bookstore/bookstore.component';
 
 
 @NgModule({
@@ -32,7 +35,9 @@ import {MatIconModule} from '@angular/material/icon';
     AuthLayoutComponent,
     ProfileComponent,
     AllBooksComponent,
-    AddBookDialogComponent
+    AddBookDialogComponent,
+    BookViewComponent,
+    BookstoreComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,11 @@ import {MatIconModule} from '@angular/material/icon';
     MatIconModule,
 
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
