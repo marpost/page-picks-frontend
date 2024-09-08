@@ -9,12 +9,35 @@
       <p><strong>Email:</strong> {{ user.email }}</p>
       <p><strong>Role:</strong> {{ user.role }}</p>
     </div>
+
+    <div *ngIf="userBookStatuses$ | async as userBookStatuses">
+      <h3>Book Statuses</h3>
+      <ul>
+        <li *ngFor="let bookStatus of userBookStatuses">
+          <div class="book-status-card">
+            <img [src]="bookStatus.book.imageUrl" alt="{{ bookStatus.book.title }} Cover" class="book-cover" />
+
+            <div class="book-details">
+              <p><strong>Title:</strong> {{ bookStatus.book.title }}</p>
+              <p><strong>Author:</strong> {{ bookStatus.book.author }}</p>
+              <p><strong>Current Page:</strong> {{ bookStatus.currentPage }}</p>
+              <p><strong>Status:</strong> {{ bookStatus.status }}</p>
+              <p><strong>Rating:</strong> {{ bookStatus.rating }}</p>
+              <p><strong>Review:</strong> {{ bookStatus.review }}</p>
+              <p><strong>Favorite:</strong> {{ bookStatus.favorite ? 'Yes' : 'No' }}</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
     <div class="profile-actions">
       <button class="btn-edit" (click)="editProfile()">Edit Profile</button>
       <button class="btn-logout" (click)="logout()">Logout</button>
     </div>
   </div>
 </div>
+
 <ng-template #loading>
   <p>Loading...</p>
 </ng-template>
