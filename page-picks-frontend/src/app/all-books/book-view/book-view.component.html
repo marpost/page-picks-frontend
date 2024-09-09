@@ -1,0 +1,15 @@
+<div class="book-view">
+    <div class="book-image">
+      <img [src]="'https://covers.openlibrary.org/b/isbn/' + book.isbn + '-L.jpg'" alt="{{ book.title }} cover image">
+    </div>
+  
+    <div class="book-info">
+      <h2 class="book-title">{{ book.title }}</h2>
+      <p class="book-author">{{ book.author }}</p>
+      <div class="book-genre">{{ book.genre }}</div>
+      <p class="book-description">{{ book.description }}</p>
+      <p class="book-publisher">{{ book.publisher }}</p>
+      <p class="book-pageCount" *ngIf="book.pageCount">{{ book.pageCount }} pages</p>
+    </div>
+  </div>
+  

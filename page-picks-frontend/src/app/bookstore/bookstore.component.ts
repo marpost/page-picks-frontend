@@ -4,11 +4,12 @@ import { AddBookDialogComponent } from '../all-books/add-book-dialog/add-book-di
 import { AllBooksComponent } from '../all-books/all-books.component';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-bookstore',
+  templateUrl: './bookstore.component.html',
+  styleUrls: ['./bookstore.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class BookstoreComponent implements OnInit {
+
 
   constructor(public dialog: MatDialog) { }
 

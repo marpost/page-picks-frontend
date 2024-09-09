@@ -1,0 +1,65 @@
+<div class="dialog-container">
+  <h2 class="dialog-title"> {{mode}}ing Book</h2>
+  <form #bookForm="ngForm" class="book-form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-group">
+      <input type="text" id="isbn"  [(ngModel)]="book.isbn" name="isbn" placeholder="ISBN" required #isbn="ngModel">
+      <div class="error-message" *ngIf="isbn.invalid && (isbn.dirty || isbn.touched)">
+        ISBN is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="title" [(ngModel)]="book.title" name="title" placeholder="Title" required #title="ngModel">
+      <div class="error-message" *ngIf="title.invalid && (title.dirty || title.touched)">
+        Title is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="author" [(ngModel)]="book.author" name="author" placeholder="Author" required #author="ngModel">
+      <div class="error-message" *ngIf="author.invalid && (author.dirty || author.touched)">
+        Author is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="genre" [(ngModel)]="book.genre" name="genre" placeholder="Genre" required #genre="ngModel">
+      <div class="error-message" *ngIf="genre.invalid && (genre.dirty || genre.touched)">
+        Genre is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <textarea id="description" [(ngModel)]="book.description" name="description" placeholder="Description" required #description="ngModel"></textarea>
+      <div class="error-message" *ngIf="description.invalid && (description.dirty || description.touched)">
+        Description is required.
+      </div>
+    </div>
+
+    <!-- <div class="form-group">
+      <input type="text" id="imageUrl" [(ngModel)]="book.imageUrl" name="imageUrl" placeholder="Image URL" required #imageUrl="ngModel">
+      <div class="error-message" *ngIf="imageUrl.invalid && (imageUrl.dirty || imageUrl.touched)">
+        Image URL is required.
+      </div>
+    </div> -->
+
+    <!-- <div class="form-group">
+      <input type="text" id="publisher" [(ngModel)]="book.publisher" name="publisher" placeholder="Publisher" required #publisher="ngModel">
+      <div class="error-message" *ngIf="publisher.invalid && (publisher.dirty || publisher.touched)">
+        Publisher is required.
+      </div>
+    </div> -->
+
+    <div class="form-group">
+      <input type="number" id="pageCount" [(ngModel)]="book.pageCount" name="pageCount" placeholder="Page Count" required #pageCount="ngModel">
+      <div class="error-message" *ngIf="pageCount.invalid && (pageCount.dirty || pageCount.touched)">
+        Page Count is required.
+      </div>
+    </div>
+
+    <div class="form-buttons">
+      <button type="submit" class="btn submit-btn" [disabled]="bookForm.invalid">Add Book</button>
+      <button type="button" class="btn cancel-btn" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>
