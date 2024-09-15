@@ -1,0 +1,15 @@
+<div class="dialog-content">
+  <h2 mat-dialog-title>Update Current Page</h2>
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Current Page</mat-label>
+      <input matInput [(ngModel)]="currentPage" type="number" />
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="closeDialog()">Cancel</button>
+    <button mat-raised-button type="button" (click)="submitPageUpdate()">Update</button>
+    <button mat-raised-button color="primary" type="button" (click)="markAsFinished()">Finished Reading</button>
+  </mat-dialog-actions>
+</div>
