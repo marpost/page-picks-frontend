@@ -21,7 +21,19 @@ import {MatIconModule} from '@angular/material/icon';
 import { AuthInterceptor } from './service/auth-interceptor';
 import { BookViewComponent } from './all-books/book-view/book-view.component';
 import { BookstoreComponent } from './bookstore/bookstore.component';
-
+import { FilterByStatusPipe } from './filter-by-status.pipe';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatButtonModule} from "@angular/material/button";
+import { PageUpdateDialogComponent } from './page-update-dialog/page-update-dialog.component';
+import {MatInputModule} from "@angular/material/input";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
+import { BookRecommendationComponent } from './book-recommentation/book-recommendation.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { PopularBooksComponent } from './popular-books/popular-books.component';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -37,7 +49,12 @@ import { BookstoreComponent } from './bookstore/bookstore.component';
     AllBooksComponent,
     AddBookDialogComponent,
     BookViewComponent,
-    BookstoreComponent
+    BookstoreComponent,
+    FilterByStatusPipe,
+    PageUpdateDialogComponent,
+    ReviewDialogComponent,
+    BookRecommendationComponent,
+    PopularBooksComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +65,14 @@ import { BookstoreComponent } from './bookstore/bookstore.component';
     ReactiveFormsModule,
     MatDialogModule,
     MatIconModule,
-
+    MatProgressBarModule,
+    MatButtonToggleModule,
+    MatTooltipModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCheckboxModule,
+    CarouselModule,
+    MatCardModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

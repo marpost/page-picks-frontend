@@ -1,39 +1,97 @@
 <div class="profile-container" *ngIf="user$ | async as user; else loading">
   <div class="profile-card">
     <div class="profile-header">
-      <img [src]="'default-profile-picture.jpg'" alt="Profile Picture" class="profile-picture" />
-      <h2>{{ user.firstName }} {{ user.lastName }}</h2>
-      <p class="username">@{{ user.username }}</p>
-    </div>
-    <div class="profile-body">
-      <p><strong>Email:</strong> {{ user.email }}</p>
-      <p><strong>Role:</strong> {{ user.role }}</p>
+      <img [src]="'default-profile-picture.jpg'" alt="Profile Picture" class="profile-picture"/>
+      <div class="profile-info">
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+        <p class="username">@{{ user.username }}</p>
+        <p class="email"><strong>Email:</strong> {{ user.email }}</p>
+        <p class="role"><strong>Role:</strong> {{ user.role }}</p>
+      </div>
     </div>
 
-    <div *ngIf="userBookStatuses$ | async as userBookStatuses">
-      <h3>Book Statuses</h3>
-      <ul>
-        <li *ngFor="let bookStatus of userBookStatuses">
-          <div class="book-status-card">
-            <img [src]="bookStatus.book.imageUrl" alt="{{ bookStatus.book.title }} Cover" class="book-cover" />
+    <div *ngIf="userBookStatuses$ | async as userBookStatuses" class="books-section">
 
-            <div class="book-details">
-              <p><strong>Title:</strong> {{ bookStatus.book.title }}</p>
-              <p><strong>Author:</strong> {{ bookStatus.book.author }}</p>
-              <p><strong>Current Page:</strong> {{ bookStatus.currentPage }}</p>
-              <p><strong>Status:</strong> {{ bookStatus.status }}</p>
-              <p><strong>Rating:</strong> {{ bookStatus.rating }}</p>
-              <p><strong>Review:</strong> {{ bookStatus.review }}</p>
-              <p><strong>Favorite:</strong> {{ bookStatus.favorite ? 'Yes' : 'No' }}</p>
-            </div>
+      <h3>Currently Reading</h3>
+      <div class="book-grid" *ngIf="(userBookStatuses | filterByStatus:'READING').length > 0; else noCurrentlyReading">
+        <div class="book-status-card" *ngFor="let bookStatus of userBookStatuses | filterByStatus:'READING'">
+          <img [src]="bookStatus.book.imageUrl" alt="{{ bookStatus.book.title }} Cover" class="book-cover"/>
+          <button mat-icon-button class="favorite-button"
+                  (click)="toggleFavorite(bookStatus)"
+                  matTooltip="Add to favourites">
+            <mat-icon [color]="bookStatus.favorite ? 'warn' : null">
+              {{ bookStatus.favorite ? 'favorite' : 'favorite_border' }}
+            </mat-icon>
+          </button>
+
+          <div class="book-details">
+            <h4>{{ bookStatus.book.title }}</h4>
+            <p>{{ bookStatus.book.author }}</p>
+            <p>{{ bookStatus.currentPage }}/{{ bookStatus.book.pageCount }} pages read</p>
+            <mat-progress-bar
+              mode="determinate"
+              [value]="(bookStatus.currentPage / bookStatus.book.pageCount) * 100">
+            </mat-progress-bar>
+            <button mat-raised-button class="continue-reading-btn mt-3"
+                    (click)="continueReading(bookStatus)">
+              Continue Reading
+            </button>
           </div>
-        </li>
-      </ul>
-    </div>
+        </div>
+      </div>
 
-    <div class="profile-actions">
-      <button class="btn-edit" (click)="editProfile()">Edit Profile</button>
-      <button class="btn-logout" (click)="logout()">Logout</button>
+      <ng-template #noCurrentlyReading>
+        <div class="empty-section">
+          <div class="empty-text">
+            <p>Why not start a new book?</p>
+            <p>Explore our collection and add your next read!</p>
+          </div>
+          <div class="empty-button">
+            <button mat-raised-button color="primary" (click)="navigateToBookstore()">
+              Browse library
+            </button>
+          </div>
+        </div>
+      </ng-template>
+
+      <h3>To Be Read</h3>
+      <div class="book-grid">
+        <div class="book-status-card" *ngFor="let bookStatus of userBookStatuses | filterByStatus:'TO_READ'">
+          <img [src]="bookStatus.book.imageUrl" alt="{{ bookStatus.book.title }} Cover" class="book-cover"/>
+          <button mat-icon-button class="favorite-button"
+                  (click)="toggleFavorite(bookStatus)"
+                  matTooltip="Add to favourites">
+            <mat-icon [color]="bookStatus.favorite ? 'warn' : null">
+              {{ bookStatus.favorite ? 'favorite' : 'favorite_border' }}
+            </mat-icon>
+          </button>
+          <div class="book-details">
+            <h4>{{ bookStatus.book.title }}</h4>
+            <p>{{ bookStatus.book.author }}</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>Finished Reading</h3>
+      <div class="book-grid">
+        <div class="book-status-card" *ngFor="let bookStatus of userBookStatuses | filterByStatus:'READ'">
+          <img [src]="bookStatus.book.imageUrl" alt="{{ bookStatus.book.title }} Cover" class="book-cover"/>
+          <button mat-icon-button class="favorite-button"
+                  (click)="toggleFavorite(bookStatus)"
+                  matTooltip="Add to favourites">
+            <mat-icon [color]="bookStatus.favorite ? 'warn' : null">
+              {{ bookStatus.favorite ? 'favorite' : 'favorite_border' }}
+            </mat-icon>
+          </button>
+          <div class="book-details">
+            <h4>{{ bookStatus.book.title }}</h4>
+            <p>{{ bookStatus.book.author }}</p>
+            <p><strong>My rating:</strong> {{ bookStatus.rating }}</p>
+            <p><strong>My review:</strong> {{ bookStatus.review }}</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

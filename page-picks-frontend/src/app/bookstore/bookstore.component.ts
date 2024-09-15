@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBookDialogComponent } from '../all-books/add-book-dialog/add-book-dialog.component';
 import { AllBooksComponent } from '../all-books/all-books.component';
+import {BooksService} from "../service/books.service";
 
 @Component({
   selector: 'app-bookstore',
@@ -9,11 +10,18 @@ import { AllBooksComponent } from '../all-books/all-books.component';
   styleUrls: ['./bookstore.component.scss']
 })
 export class BookstoreComponent implements OnInit {
+  title: string = '';
+  genre: string = '';
+  author: string = '';
+  allBooks: any[] = [];
+  genres: string[] = [];
+  authors: string[] = [];
 
-
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private bookService: BooksService) {}
 
   ngOnInit(): void {
+    this.loadGenresAndAuthors();
+    this.fetchAllBooks();
   }
 
   @ViewChild(AllBooksComponent) allBooksComponent!: AllBooksComponent;
@@ -26,9 +34,35 @@ export class BookstoreComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.allBooksComponent.fetchData();
+        this.fetchAllBooks();
       }
     });
   }
 
+  searchBooks(): void {
+    this.bookService.searchBooks(this.title, this.genre, this.author).subscribe(
+      (books) => {
+        this.allBooks = books;
+      },
+      (error) => {
+        console.error('Error fetching books:', error);
+      }
+    );
+  }
+
+  fetchAllBooks(): void {
+    this.bookService.getBooks().subscribe((books) => {
+      this.allBooks = books;
+    });
+  }
+
+  loadGenresAndAuthors(): void {
+    this.bookService.getAllCategories().subscribe((categories) => {
+      this.genres = categories;
+    });
+
+    this.bookService.getAllAuthors().subscribe((authors) => {
+      this.authors = authors;
+    });
+  }
 }

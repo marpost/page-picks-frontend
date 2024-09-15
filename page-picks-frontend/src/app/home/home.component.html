@@ -1,14 +1,38 @@
 <div class="hero-section">
   <div class="overlay"></div>
+  <div class="welcome-and-book-container">
+    <!-- Welcome Message -->
+    <div *ngIf="isAuthenticated" class="welcome-message">
+      <h2>Welcome back, {{ userName }}!</h2>
+      <p>Ready to dive into your next great read?</p>
+    </div>
   <div class="hero-content">
-    <h1>Page Picks</h1>
-    <p>The whole library is in your phone</p>
-    <h2>Start exploring</h2>
-    <a href="#" class="see-more-btn">See More</a>
+        <div class="welcome-book-grid">
+          <div *ngIf="isAuthenticated && continueReadingBook" class="book-cover-section">
+            <img [src]="continueReadingBook.book.imageUrl" alt="{{ continueReadingBook.book.title }} Cover" class="book-cover" />
+          </div>
+          <div class="mt-4 book-details-section">
+            <div *ngIf="isAuthenticated && continueReadingBook" class="continue-reading-details">
+              <h3 class="custom-title">{{ continueReadingBook.book.title }}</h3><br>
+              <h3 class="custom-author">{{ continueReadingBook.book.author }}</h3>
+              <h1>{{continueReadingBook.book.genre}}</h1>
+              <p>Page {{ continueReadingBook.currentPage }}/{{ continueReadingBook.book.pageCount}}</p>
+              <button class="continue-reading-btn">Continue Reading</button>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 </div>
 
-<div class="search-section">
+<div *ngIf="isAuthenticated; else notAuthenticated">
+  <app-book-recommentation></app-book-recommentation>
+</div>
+<ng-template #notAuthenticated>
+  <app-popular-books></app-popular-books>
+</ng-template>
+
+<div *ngIf="isAuthenticated" class="search-section">
   <input type="text" placeholder="Book Title">
   <select>
     <option>Book Category</option>
@@ -19,4 +43,3 @@
   <button class="search-btn"><i class="fa fa-search"></i> Find Book</button>
   <button class="add-book-btn" (click)="openAddBookDialog()"> <mat-icon>library_add</mat-icon> </button>
 </div>
-

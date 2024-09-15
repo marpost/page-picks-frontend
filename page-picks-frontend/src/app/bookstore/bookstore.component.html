@@ -1,23 +1,36 @@
 <div class="hero-section">
-    <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>Page Picks</h1>
-      <p>The whole library is in your phone</p>
-      <h2>Start exploring</h2>
-      <a href="#" class="see-more-btn">See More</a>
-    </div>
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h1>Page Picks</h1>
+    <p>The whole library is in your phone</p>
   </div>
-  
-  <div class="search-section">
-    <input type="text" placeholder="Book Title">
-    <select>
-      <option>Book Category</option>
-    </select>
-    <select>
-      <option>Book Author</option>
-    </select>
-    <button class="search-btn"><i class="fa fa-search"></i> Find Book</button>
-    <button class="add-book-btn" (click)="openAddBookDialog()"> <mat-icon>library_add</mat-icon> </button>
-  </div>
-  
+</div>
+
+<div class="search-section">
+  <input type="text" placeholder="Book Title" [(ngModel)]="title">
+
+  <select [(ngModel)]="genre">
+    <option value="">Book Category</option>
+    <option *ngFor="let category of genres" [value]="category">{{ category }}</option>
+  </select>
+
+  <select [(ngModel)]="author">
+    <option value="">Book Author</option>
+    <option *ngFor="let author of authors" [value]="author">{{ author }}</option>
+  </select>
+
+  <button class="search-btn" (click)="searchBooks()"><i class="fa fa-search"></i> Find Book</button>
+  <button class="add-book-btn" (click)="openAddBookDialog()"><mat-icon>library_add</mat-icon></button>
+</div>
+
+<ng-container *ngIf="allBooks.length > 0; else noBooksFoundTemplate">
   <app-all-books></app-all-books>
+</ng-container>
+
+<ng-template #noBooksFoundTemplate>
+  <div class="no-books-found">
+    <h2>Sorry, no books found!</h2>
+    <p>Try adjusting your search or explore other categories.</p>
+    <img src="assets/images/hand-drawn-no-data-concept.png" alt="No Books Found" class="no-books-image" />
+  </div>
+</ng-template>

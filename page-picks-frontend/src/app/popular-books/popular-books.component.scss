@@ -1,0 +1,88 @@
+.popular-books-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.popular-books-section h2 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.popular-books-section p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.book-cards-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.book-card {
+  width: 200px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 15px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.book-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.book-cover {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.book-details h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.book-details p {
+  font-size: 14px;
+  margin: 5px 0;
+  color: #777;
+}
+
+.explore-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.explore-button:hover {
+  background-color: #0056b3;
+}
+
+.signup-cta {
+  margin-top: 30px;
+}
+
+.signup-cta p {
+  font-size: 16px;
+}
+
+.signup-cta a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signup-cta a:hover {
+  text-decoration: underline;
+}

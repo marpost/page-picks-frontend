@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Leave a Review</h2>
+<mat-dialog-content>
+
+  <div class="rating-container">
+    <mat-icon
+      *ngFor="let star of stars; let i = index"
+      (click)="setRating(i + 1)"
+      [color]="i < rating ? 'accent' : ''">
+      {{ i < rating ? 'star' : 'star_border' }}
+    </mat-icon>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Review</mat-label>
+    <textarea matInput [(ngModel)]="review" placeholder="Enter a review (optional)"></textarea>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="submitReview()">Submit</button>
+</mat-dialog-actions>
