@@ -12,6 +12,10 @@ export class UserBookStatusService {
   constructor(private http: HttpClient) {
   }
 
+  saveUserBookStatus(userBookStatus: UserBookStatus): Observable<UserBookStatus> {
+    return this.http.post<UserBookStatus>(`${this.apiUrl}/save`, userBookStatus);
+  }
+
   getUserBookStatuses(userId: number): Observable<UserBookStatus[]> {
     return this.http.get<UserBookStatus[]>(`${this.apiUrl}/user/${userId}`);
   }

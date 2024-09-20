@@ -64,4 +64,17 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  startReading(bookStatus: UserBookStatus): void {
+    bookStatus.status = 'READING';
+    bookStatus.currentPage = 1;
+
+    this.userBookStatusService.saveUserBookStatus(bookStatus).subscribe(
+      updatedStatus => {
+        this.userBookStatuses$ = this.userBookStatusService.getUserBookStatuses(this.userId!);
+      },
+      error => {
+        console.error('Error updating book status', error);
+      }
+    );
+  }
 }

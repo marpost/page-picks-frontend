@@ -5,6 +5,7 @@ import { AllBooksComponent } from '../all-books/all-books.component';
 import {AuthService} from "../service/auth.service";
 import {UserBookStatusService} from "../service/user-book-status.service";
 import {UserBookStatus} from "../models/userBookStatus.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
               private authService: AuthService,
-              private userBookStatusService: UserBookStatusService) { }
+              private userBookStatusService: UserBookStatusService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.isAuthenticated = this.authService.isAuthenticated();
@@ -48,5 +50,9 @@ export class HomeComponent implements OnInit {
         this.allBooksComponent.fetchData();
       }
     });
+  }
+
+  navigateToLibrary() {
+    this.router.navigate(['/bookstore']);
   }
 }

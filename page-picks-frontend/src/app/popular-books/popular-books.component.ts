@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BookRecommendationService} from "../service/book-recommendation.service";
 import {Book} from "../service/interface/book";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-popular-books',
@@ -9,7 +8,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./popular-books.component.scss']
 })
 export class PopularBooksComponent implements OnInit {
-  popularBooks: Book[] = []; // Array to store the popular books
+  popularBooks: Book[] = [];
 
   constructor(private bookRecommendationService: BookRecommendationService) { }
 
@@ -17,10 +16,9 @@ export class PopularBooksComponent implements OnInit {
     this.loadPopularBooks();
   }
 
-  // Fetch and load the popular books
   loadPopularBooks(): void {
     this.bookRecommendationService.getMostPopularBooks().subscribe((books: Book[]) => {
-      this.popularBooks = books; // Store the fetched books in the popularBooks array
+      this.popularBooks = books;
     });
   }
 }

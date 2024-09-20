@@ -1,45 +1,65 @@
-<div class="hero-section">
+<!-- Hero Section for Authenticated Users -->
+<div *ngIf="isAuthenticated; else notAuthenticatedHero" class="hero-section">
   <div class="overlay"></div>
   <div class="welcome-and-book-container">
-    <!-- Welcome Message -->
-    <div *ngIf="isAuthenticated" class="welcome-message">
+    <div class="welcome-message">
       <h2>Welcome back, {{ userName }}!</h2>
-      <p>Ready to dive into your next great read?</p>
     </div>
-  <div class="hero-content">
-        <div class="welcome-book-grid">
-          <div *ngIf="isAuthenticated && continueReadingBook" class="book-cover-section">
-            <img [src]="continueReadingBook.book.imageUrl" alt="{{ continueReadingBook.book.title }} Cover" class="book-cover" />
-          </div>
-          <div class="mt-4 book-details-section">
-            <div *ngIf="isAuthenticated && continueReadingBook" class="continue-reading-details">
-              <h3 class="custom-title">{{ continueReadingBook.book.title }}</h3><br>
-              <h3 class="custom-author">{{ continueReadingBook.book.author }}</h3>
-              <h1>{{continueReadingBook.book.genre}}</h1>
-              <p>Page {{ continueReadingBook.currentPage }}/{{ continueReadingBook.book.pageCount}}</p>
-              <button class="continue-reading-btn">Continue Reading</button>
-            </div>
+    <div class="hero-content">
+      <div class="welcome-book-grid">
+        <div *ngIf="continueReadingBook" class="book-cover-section">
+          <img [src]="continueReadingBook.book.imageUrl" alt="{{ continueReadingBook.book.title }} Cover" class="book-cover" />
+        </div>
+        <div class="mt-4 book-details-section">
+          <div *ngIf="continueReadingBook" class="continue-reading-details">
+            <h3 class="custom-title">{{ continueReadingBook.book.title }}</h3>
+            <h3 class="custom-author">{{ continueReadingBook.book.author }}</h3>
+            <h1>{{ continueReadingBook.book.genre }}</h1>
+            <p>Page {{ continueReadingBook.currentPage }}/{{ continueReadingBook.book.pageCount }}</p>
+            <button class="continue-reading-btn">Continue Reading</button>
           </div>
         </div>
       </div>
+    </div>
   </div>
 </div>
 
+
+<ng-template #notAuthenticatedHero>
+  <div class="hero-section hero-section-not-authenticated">
+    <div class="overlay-not-authenticated"></div>
+    <div class="hero-content-not-authenticated">
+      <h1>Page Picks</h1>
+      <p>The whole library is in your phone</p>
+      <a href="/library" class="see-more-btn">Explore Library</a>
+    </div>
+  </div>
+</ng-template>
+
 <div *ngIf="isAuthenticated; else notAuthenticated">
   <app-book-recommentation></app-book-recommentation>
+  <app-best-reviewed-books></app-best-reviewed-books>
+
+  <div class="explore-library-section">
+    <h2><strong>Didn’t find anything you like?</strong></h2>
+    <p>Explore our extensive collection and discover your next favorite book!</p>
+    <button class="browse-library-btn" (click)="navigateToLibrary()">Go to Library</button>
+  </div>
 </div>
+
+<!-- Popular Books Section for Non-Authenticated Users -->
 <ng-template #notAuthenticated>
   <app-popular-books></app-popular-books>
 </ng-template>
 
-<div *ngIf="isAuthenticated" class="search-section">
-  <input type="text" placeholder="Book Title">
-  <select>
-    <option>Book Category</option>
-  </select>
-  <select>
-    <option>Book Author</option>
-  </select>
-  <button class="search-btn"><i class="fa fa-search"></i> Find Book</button>
-  <button class="add-book-btn" (click)="openAddBookDialog()"> <mat-icon>library_add</mat-icon> </button>
-</div>
+<!-- Footer Section -->
+<footer class="footer-section">
+  <div class="footer-content">
+    <p>&copy; 2024 Page Picks. All rights reserved.</p>
+    <nav class="footer-nav">
+      <a href="/about-us">About Us</a> |
+      <a href="/contact">Contact</a> |
+      <a href="/privacy-policy">Privacy Policy</a>
+    </nav>
+  </div>
+</footer>

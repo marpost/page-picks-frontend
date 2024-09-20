@@ -68,9 +68,14 @@
           <div class="book-details">
             <h4>{{ bookStatus.book.title }}</h4>
             <p>{{ bookStatus.book.author }}</p>
+
+            <button mat-raised-button color="primary" (click)="startReading(bookStatus)">
+              Start Reading
+            </button>
           </div>
         </div>
       </div>
+
 
       <h3>Finished Reading</h3>
       <div class="book-grid">
