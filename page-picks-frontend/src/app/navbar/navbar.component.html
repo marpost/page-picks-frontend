@@ -10,7 +10,6 @@
       <li><a routerLink="/blog">Blog</a></li>
       <li *ngIf="authService.isAuthenticated()"><a routerLink="/profile">My Account</a></li>
       <li><a routerLink="/contact">Contact</a></li>
-      <li *ngIf="authService.isAuthenticated()"><a routerLink="#" class="cart">Cart (0)</a></li>
       <li *ngIf="!authService.isAuthenticated()"><a routerLink="/login">Login</a></li>
       <li *ngIf="!authService.isAuthenticated()"><a routerLink="/register">Register</a></li>
       <li *ngIf="authService.isAuthenticated()"><a (click)="logout()">Logout</a></li>
