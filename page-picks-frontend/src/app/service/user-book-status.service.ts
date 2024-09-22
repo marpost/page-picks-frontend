@@ -20,6 +20,21 @@ export class UserBookStatusService {
     return this.http.get<UserBookStatus[]>(`${this.apiUrl}/user/${userId}`);
   }
 
+  addBookToRead(userId: number, bookIsbn: string): Observable<UserBookStatus> {
+    const userBookStatus = {
+      user: { id: userId }, 
+      book: { isbn: bookIsbn },
+      status: 'TO_READ',   
+      currentPage: 0,
+      rating: 0,
+      review: '',
+      favorite: false
+    };
+  
+    return this.http.post<UserBookStatus>(`${this.apiUrl}/save`, userBookStatus);
+  }
+  
+
   updateFavorite(id: number, favorite: boolean): Observable<UserBookStatus> {
     return this.http.patch<UserBookStatus>(`${this.apiUrl}/updateFavorite/${id}`, favorite);
   }

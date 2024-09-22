@@ -8,6 +8,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class BooksService {
   private baseUrl = 'http://localhost:8080/api/books';
+  private bookReviewsUrl = 'http://localhost:8080/api/user-book-status/book';
 
   constructor(private http: HttpClient) {
   }
@@ -91,6 +92,10 @@ export class BooksService {
 
   getAllCategories(): Observable<string[]> {
     return this.http.get<string[]>(`${this.baseUrl}/categories`);
+  }
+
+  getReviewsForBook(isbn: string){
+    return this.http.get<string[]>(`${this.bookReviewsUrl}/${isbn}/reviews`);
   }
 
 }
