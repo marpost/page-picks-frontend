@@ -27,6 +27,7 @@ export interface AuthenticationResponse {
 export class AuthService {
   private baseUrl = 'http://localhost:8080/api/auth';
   private tokenKey = 'authToken';
+  private roleKey = 'userRole';
 
   constructor(private http: HttpClient) { }
 
@@ -39,17 +40,25 @@ export class AuthService {
     return this.http.post<AuthenticationResponse>(`${this.baseUrl}/authenticate`, request)
       .pipe(tap(response => this.setToken(response.token)));
   }
+
   getLoggedInUser(): Observable<User> {
-    const token = this.getToken()
+    const token = this.getToken();
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<User>(`${this.baseUrl}/principal`, { headers });
+    return this.http.get<User>(`${this.baseUrl}/principal`, { headers })
+      .pipe(
+        tap(user => this.setUserRole(user.role))
+      );
   }
 
   private setToken(token: string): void {
     localStorage.setItem(this.tokenKey, token);
+  }
+
+  private setUserRole(role: string): void { 
+    localStorage.setItem(this.roleKey, role);
   }
 
    getToken(): string | null {

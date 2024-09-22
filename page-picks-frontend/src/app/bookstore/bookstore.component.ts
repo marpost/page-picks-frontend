@@ -16,6 +16,7 @@ export class BookstoreComponent implements OnInit {
   allBooks: any[] = [];
   genres: string[] = [];
   authors: string[] = [];
+  userRole = localStorage.getItem('userRole');
 
   constructor(public dialog: MatDialog, private bookService: BooksService) {}
 

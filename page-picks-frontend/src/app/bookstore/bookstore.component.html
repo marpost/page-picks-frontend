@@ -20,7 +20,7 @@
   </select>
 
   <button class="search-btn" (click)="searchBooks()"><i class="fa fa-search"></i> Find Book</button>
-  <button class="add-book-btn" (click)="openAddBookDialog()"><mat-icon>library_add</mat-icon></button>
+  <button class="add-book-btn" (click)="openAddBookDialog()" *ngIf="userRole ==='ADMIN'"><mat-icon>library_add</mat-icon></button>
 </div>
 
 <ng-container *ngIf="allBooks.length > 0; else noBooksFoundTemplate">

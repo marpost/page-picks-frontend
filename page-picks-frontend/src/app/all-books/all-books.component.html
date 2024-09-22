@@ -1,6 +1,6 @@
 <div class="books-grid">
   <div class="book-card" *ngFor="let book of allBooks" (click)="viewBook(book)">
-    <div class="actions">
+    <div class="actions" *ngIf="userRole === 'ADMIN'">
       <button mat-icon-button class="edit-btn" (click)="editBook(book); $event.stopPropagation()">
         <mat-icon>edit_outline</mat-icon>
       </button>

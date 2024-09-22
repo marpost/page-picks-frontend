@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class AllBooksComponent implements OnInit {
 
   allBooks: Book[] = [];
+  userRole = localStorage.getItem('userRole');
 
   constructor(private bookService: BooksService, public dialog: MatDialog, private router: Router) { }
 
@@ -68,6 +69,7 @@ export class AllBooksComponent implements OnInit {
   }
 
   viewBook(book: any) {
+    this.bookService.getReviewsForBook(book.isbn).subscribe();
     this.router.navigate(['/book'], { queryParams: { isbn: book.isbn } });
   }
 }
