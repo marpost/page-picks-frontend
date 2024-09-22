@@ -9,6 +9,8 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import {ProfileComponent} from "./profile/profile.component";
 import { BookViewComponent } from './all-books/book-view/book-view.component';
 import { BookstoreComponent } from './bookstore/bookstore.component';
+import {BlogListComponent} from "./blog-list/blog-list.component";
+import {BlogDetailComponent} from "./blog-detail/blog-detail.component";
 
 const routes: Routes = [
   {
@@ -21,6 +23,8 @@ const routes: Routes = [
       { path: 'contact', component: ContactComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'book', component: BookViewComponent },
+      { path: 'blogs', component: BlogListComponent},
+      { path: 'blogs/:id', component: BlogDetailComponent},
     ]
   },
   {

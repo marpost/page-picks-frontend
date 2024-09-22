@@ -7,6 +7,7 @@ import {UserBookStatus} from "../models/userBookStatus.model";
 import {MatDialog} from "@angular/material/dialog";
 import { PageUpdateDialogComponent } from '../page-update-dialog/page-update-dialog.component';
 import {Router} from "@angular/router";
+import {EditReviewDialogComponent} from "../edit-review-dialog/edit-review-dialog.component";
 
 @Component({
   selector: 'app-profile',
@@ -77,4 +78,18 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+
+  editReview(bookStatus: UserBookStatus): void {
+    const dialogRef = this.dialog.open(EditReviewDialogComponent, {
+      width: '400px',
+      data: { bookStatus }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.userBookStatuses$ = this.userBookStatusService.getUserBookStatuses(this.userId!);
+      }
+    });
+  }
+
 }

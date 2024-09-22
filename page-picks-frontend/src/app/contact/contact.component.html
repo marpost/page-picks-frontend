@@ -1,11 +1,5 @@
 <div class="container d-flex justify-content-center align-items-center">
 
-  <!-- // SVG
-          from: https://www.freepik.com/free-vector/new-message-concept-landing-page_5777076.htm
-  -------------------------------------------------------------
-  -- Note: need to use inline svg to manipulate its components
-  ------------------------------------------------------------>
-
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 563" fill="none">
     <g id="Image">
       <g id="g14">
@@ -309,8 +303,8 @@
 
   <form>
     <h1 class="title text-center mb-4">Talk to Us</h1>
+    <p class="description text-center mb-3">We’d love to hear from you! Whether you have a question, feedback, or just want to say hi, fill out the form below and we’ll get back to you as soon as .</p>
 
-    <!-- Name -->
     <div class="form-group position-relative">
       <label for="formName" class="d-block">
         <i class="icon" data-feather="user"></i>
@@ -318,21 +312,19 @@
       <input type="text" id="formName" class="form-control form-control-lg thick" placeholder="Name">
     </div>
 
-    <!-- E-mail -->
-    <div class="form-group position-relative">
+    <div class="mt-4 form-group position-relative">
       <label for="formEmail" class="d-block">
         <i class="icon" data-feather="mail"></i>
       </label>
-      <input type="email" id="formEmail" class="form-control form-control-lg thick" placeholder="E-mail">
+      <input type="email" id="formEmail" class="form-control form-control-lg thick" placeholder="pagepicks@support.com"  [(ngModel)]="email">
     </div>
 
-    <!-- Message -->
-    <div class="form-group message">
-      <textarea id="formMessage" class="form-control form-control-lg" rows="7" placeholder="Mensagem"></textarea>
+    <div class="mt-4 form-group message">
+      <textarea id="formMessage" class="form-control form-control-lg" rows="7" placeholder="Message"></textarea>
     </div>
 
     <!-- Submit btn -->
-    <div class="text-center">
+    <div class="mt-4 text-center">
       <button type="submit" class="btn btn-primary" tabIndex="-1">Send message</button>
     </div>
   </form>

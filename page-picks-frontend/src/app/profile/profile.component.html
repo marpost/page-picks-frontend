@@ -93,6 +93,9 @@
             <p>{{ bookStatus.book.author }}</p>
             <p><strong>My rating:</strong> {{ bookStatus.rating }}</p>
             <p><strong>My review:</strong> {{ bookStatus.review }}</p>
+            <button mat-raised-button color="accent" (click)="editReview(bookStatus)">
+              Edit Review
+            </button>
           </div>
         </div>
       </div>

@@ -1,0 +1,91 @@
+.blog-list {
+  margin: 20px auto;
+  max-width: 1000px;
+  text-align: left;
+}
+
+.create-blog-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.blog-item {
+  display: flex;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.blog-item:hover {
+  transform: translateY(-5px);
+}
+
+.blog-thumbnail img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.blog-content {
+  flex-grow: 1;
+}
+
+.blog-content h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.blog-content p {
+  color: #666;
+  line-height: 1.5;
+}
+
+.blog-tags {
+  margin: 10px 0;
+}
+
+.blog-tag {
+  background-color: #eee;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+.blog-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.read-more-btn, .edit-btn, .delete-btn {
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.read-more-btn {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+}
+
+.edit-btn {
+  background-color: #FFA500;
+  color: white;
+  border: none;
+}
+
+.delete-btn {
+  background-color: #FF6347;
+  color: white;
+  border: none;
+}

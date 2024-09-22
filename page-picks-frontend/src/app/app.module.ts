@@ -35,6 +35,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { PopularBooksComponent } from './popular-books/popular-books.component';
 import {MatCardModule} from "@angular/material/card";
 import { BestReviewedBooksComponent } from './best-reviewed-books/best-reviewed-books.component';
+import { EditReviewDialogComponent } from './edit-review-dialog/edit-review-dialog.component';
+import { BlogListComponent } from './blog-list/blog-list.component';
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,10 @@ import { BestReviewedBooksComponent } from './best-reviewed-books/best-reviewed-
     ReviewDialogComponent,
     BookRecommendationComponent,
     PopularBooksComponent,
-    BestReviewedBooksComponent
+    BestReviewedBooksComponent,
+    EditReviewDialogComponent,
+    BlogListComponent,
+    BlogDetailComponent
   ],
   imports: [
     BrowserModule,

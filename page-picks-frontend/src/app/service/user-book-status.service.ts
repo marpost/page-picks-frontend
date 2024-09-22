@@ -42,4 +42,12 @@ export class UserBookStatusService {
   getContinueReadingBook(): Observable<UserBookStatus> {
     return this.http.get<UserBookStatus>(`${this.apiUrl}/continue-reading`);
   }
+
+  updateRating(id: number, rating: number): Observable<UserBookStatus> {
+    return this.http.patch<UserBookStatus>(`${this.apiUrl}/updateRating/${id}`, rating);
+  }
+
+  updateReview(id: number, review: string): Observable<UserBookStatus> {
+    return this.http.patch<UserBookStatus>(`${this.apiUrl}/updateReview/${id}`, review);
+  }
 }
