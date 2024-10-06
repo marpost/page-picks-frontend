@@ -1,4 +1,3 @@
-<!-- Hero Section for Authenticated Users -->
 <div *ngIf="isAuthenticated; else notAuthenticatedHero" class="hero-section">
   <div class="overlay"></div>
   <div class="welcome-and-book-container">
@@ -16,7 +15,7 @@
             <h3 class="custom-author">{{ continueReadingBook.book.author }}</h3>
             <h1>{{ continueReadingBook.book.genre }}</h1>
             <p>Page {{ continueReadingBook.currentPage }}/{{ continueReadingBook.book.pageCount }}</p>
-            <button class="continue-reading-btn">Continue Reading</button>
+            <button class="continue-reading-btn" (click)="continueReading()" >Continue Reading</button>
           </div>
         </div>
       </div>
@@ -29,9 +28,6 @@
   <div class="hero-section hero-section-not-authenticated">
     <div class="overlay-not-authenticated"></div>
     <div class="hero-content-not-authenticated">
-      <h1>Page Picks</h1>
-      <p>The whole library is in your phone</p>
-      <a href="/library" class="see-more-btn">Explore Library</a>
     </div>
   </div>
 </ng-template>
@@ -47,12 +43,10 @@
   </div>
 </div>
 
-<!-- Popular Books Section for Non-Authenticated Users -->
 <ng-template #notAuthenticated>
   <app-popular-books></app-popular-books>
 </ng-template>
 
-<!-- Footer Section -->
 <footer class="footer-section">
   <div class="footer-content">
     <p>&copy; 2024 Page Picks. All rights reserved.</p>

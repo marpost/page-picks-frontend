@@ -55,4 +55,9 @@ export class HomeComponent implements OnInit {
   navigateToLibrary() {
     this.router.navigate(['/bookstore']);
   }
+
+  continueReading() {
+    this.router.navigate(['/profile']);
+
+  }
 }

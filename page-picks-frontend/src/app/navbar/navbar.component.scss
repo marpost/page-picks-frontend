@@ -6,12 +6,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: grey;
+  background: #4a4a4a; /* A softer dark gray color */
   padding: 10px 0;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
 }
-.active-sidenav {
-  background-color: rgba(0, 0, 0, 0.8);
-}
+
 .navbar-container {
   display: flex;
   justify-content: space-between;
@@ -27,16 +26,16 @@
 }
 
 .navbar-brand {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
-  color: white;
+  color: #fff; /* White color for contrast */
   text-decoration: none;
   margin-right: 10px;
 }
 
 .navbar-subtitle {
   font-size: 14px;
-  color: #ccc;
+  color: #bbb; /* Light gray for subtle contrast */
 }
 
 .navbar-right {
@@ -51,18 +50,21 @@
 }
 
 .navbar-right li a {
-  color: white;
+  color: #fff;
   text-decoration: none;
   padding: 5px 10px;
+  transition: background 0.3s, color 0.3s; /* Adds smooth hover effect */
 }
 
 .navbar-right li a:hover {
-  background: rgba(255, 255, 255, 0.2); /* Slightly visible hover effect */
+  background: #6a6a6a;
+  color: #f0f0f0;
   border-radius: 5px;
 }
 
 .cart {
-  background: rgba(255, 255, 255, 0.2);
+  background: #6a6a6a;
   border-radius: 5px;
   padding: 5px 10px;
+  color: white;
 }
